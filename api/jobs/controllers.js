@@ -17,6 +17,18 @@ function getAll() {
 
 exports.getAll = getAll;
 
+function getById(id) {
+  return new Promise((fnResolve, fnReject) => {
+    Jobs.findById(id, function (objError, objUser) {
+      if (objError)
+        return fnReject(objError);
+      return fnResolve(objUser);
+    });
+  });
+};
+
+exports.getById = getById;
+
 function create(company, type, position, location, category, description, applyGuide, email) {
   return new Promise((fnResolve, fnReject) => {
     console.log("Creating job post...");
@@ -86,3 +98,27 @@ function getByCategory(categoryName) {
 };
 
 exports.getByCategory = getByCategory;
+
+function updateById(id, company, type, position, location, category, description, applyGuide, email) {
+  return new Promise((fnResolve, fnReject) => {
+    const objJob = Object.assign({}, {
+      company: company,
+      type: type,
+      position: position,
+      location: location,
+      category: category,
+      description: description,
+      applyGuide: applyGuide,
+      email: email
+    });
+
+
+    Jobs.findOneAndUpdate({ _id: id }, objJob, { new: true }, function (objError, objUser) {
+      if (objError)
+        return fnReject(objError);
+      return fnResolve(objUser);
+    });
+  })
+}
+
+exports.updateById = updateById;

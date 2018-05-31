@@ -31,8 +31,26 @@ module.exports = function (app) {
     });
 
   app.route('/api/jobs/:id')
-    // .get(JobController.get_job_by_id)
-    // .put(JobController.update_job_by_id)
+    .get((req, res) => {
+      JobController.getById(req.params.id).then((objJob) => {
+        res.json(objJob)
+      });
+    })
+    .put((req, res) => {
+      JobController.updateById(
+        req.params.id,
+        req.body.company,
+        req.body.type,
+        req.body.position,
+        req.body.location,
+        req.body.category,
+        req.body.description,
+        req.body.applyGuide,
+        req.body.email
+      ).then((objJob) => {
+        res.json(objJob);
+      })
+    })
     .delete((req, res) => {
       JobController.deleteById(req.params.id).then((strMessage) => {
         res.json(strMessage);
