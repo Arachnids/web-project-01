@@ -1,4 +1,7 @@
 'use strict';
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
 module.exports = function (app) {
   const JobController = require('./controllers');
   // todoList Routes
@@ -11,7 +14,8 @@ module.exports = function (app) {
     });
 
   app.route('/api/jobs/createJob')
-    .post((req, res) => {
+    .post(upload.single('jobImage'), (req, res) => {
+      console.log(req.file);
       JobController.create(
         req.body.company,
         req.body.type,
@@ -44,15 +48,10 @@ module.exports = function (app) {
 
   app.route('/api/jobs/:category')
     .get((req, res) => {
-      JobController.getByCategory(req.params.categorys).then((listJobs) => {
+      JobController.getByCategory(req.params.category).then((listJobs) => {
         res.json(listJobs);
       });
     });
-
-
-
-
-
 
   // app.get('/', (req, res) => {
   //   res.send('Hello World');
