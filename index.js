@@ -3,6 +3,7 @@ const app = express();
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser'); //CUANDO EL BODY NoEx
+const cors = require('cors');
 
 // app.get('/', (req, res) => {
 //   res.send('Hello World');
@@ -28,6 +29,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
+
+app.use(cors());
 
 const jobsRoutes = require('./api/jobs/routes'); //IMPORT JOBS ROUTES
 const usersRoutes = require('./api/users/routes'); //IMPORT USERS ROUTES
