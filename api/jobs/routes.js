@@ -1,6 +1,4 @@
 'use strict';
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 
 module.exports = function (app) {
   const JobController = require('./controllers');
@@ -14,7 +12,7 @@ module.exports = function (app) {
     });
 
   app.route('/api/jobs/createJob')
-    .post(upload.single('jobImage'), (req, res) => {
+    .post((req, res) => {
       console.log(req.file);
       JobController.create(
         req.body.company,
