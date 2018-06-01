@@ -10,7 +10,7 @@ module.exports = function (app) {
       });
     });
 
-  app.route('/api/users/singUp')
+  app.route('/api/users/signUp')
     .post((req, res) => {
       UserController.create(
         req.body.name,
@@ -47,8 +47,7 @@ module.exports = function (app) {
       });
     })
 
-  // app.route('/singIn')
-  //   .post(UserController.sign_in);
+
 
 
 };
