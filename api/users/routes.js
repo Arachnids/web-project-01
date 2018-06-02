@@ -1,7 +1,8 @@
 'use strict';
 module.exports = function (app) {
   const UserController = require('./controllers');
-  // todoList Routes
+  let passport = require('passport');
+  let LocalStrategy = require('passport-local').Strategy;
 
   app.route('/api/users')
     .get((req, res) => {
@@ -47,7 +48,12 @@ module.exports = function (app) {
       });
     })
 
-
-
-
+  app.post('/login', 
+  passport.authenticate('local'
+  , {
+    failureRedirect: '/login',
+    successRedirect: '/homeAdmin',
+  }), function(req, res) {
+    res.send('Welcome back');
+  })
 };

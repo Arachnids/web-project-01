@@ -2,7 +2,6 @@
 
 module.exports = function (app) {
   const JobController = require('./controllers');
-  // todoList Routes
 
   app.route('/api/jobs')
     .get((req, res) => {
@@ -28,10 +27,10 @@ module.exports = function (app) {
       });
     });
 
-    app.route('/api/jobs/:category')
+  app.route('/api/jobs/:category')
     .get((req, res) => {
       JobController.getByCategory(req.params.category).then((listJobs) => {
-        
+
         res.json(listJobs);
       });
     });
@@ -69,14 +68,4 @@ module.exports = function (app) {
         res.json(listJobs);
       });
     });
-
-  
-
-  // app.get('/', (req, res) => {
-  //   res.send('Hello World');
-  // });
-
-
-
-
 };

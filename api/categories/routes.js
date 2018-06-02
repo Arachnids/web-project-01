@@ -8,7 +8,7 @@ module.exports = function (app) {
         res.json(listCategories);
       });
     });
-  
+
   app.route('/api/categories/:id')
     .get((req, res) => {
       CategoryController.getById(req.params.id).then((objCategory) => {
@@ -22,7 +22,7 @@ module.exports = function (app) {
     })
 
   app.route('/api/categories/createCategory')
-    .post((req,res) => {
+    .post((req, res) => {
       CategoryController.create(
         req.body.name
       ).then((objCategory) => {

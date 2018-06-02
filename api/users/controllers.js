@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 let bcrypt = require('bcrypt');
 let Users = mongoose.model('users');
 
+
 function getAll() {
   return new Promise((fnResolve, fnReject) => {
     Users.find({}, (objError, listUsers) => {
@@ -100,26 +101,6 @@ function deleteById(id) {
 };
 
 exports.deleteById = deleteById;
-
-// exports.sign_in = function(req, res) {
-//   console.log("----------- email----: ",req.body.email);
-//   return User.find({email:req.body.email}).then((userx)=> {
-//       console.log("userx : ", userx[0].email);
-//         if (userx[0].email==null) {
-//           res.status(401).json({ message: 'Authentication failed. User not found.' });
-//         } else if (userx) {
-//             return BcryptX.isValidPassword(req.body.password, userx[0].password).then(() => {
-//               return res.json({token: service.createTokenLogin(userx)});
-//             })
-//           } else {
-//               res.status(401).json({ message: 'Authentication failed. Wrong password.' });
-//             }
-//     //}
-//   }).catch(() => {
-//       return res.status(404).json({ message: 'Authentication failed. User not password Incorrect.' });
-//       });
-
-// };
 
 
 
