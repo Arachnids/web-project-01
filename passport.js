@@ -19,10 +19,7 @@ module.exports = function (passport) {
                 if (User) {
                     var valid = User.comparePassword(password, User.password)
                     if (valid) {
-                        done(null, {
-                            username: User.username,
-                            password: User.password
-                        })
+                        done(null, User)
                     }
                     else {
                         done(null, false)

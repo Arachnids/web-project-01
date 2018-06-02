@@ -48,12 +48,15 @@ module.exports = function (app) {
       });
     })
 
-  app.post('/login', 
-  passport.authenticate('local'
-  , {
-    failureRedirect: 'C:/Users/Temistocles/Desktop/web/ProyectoWeb1/login.html',
-    successRedirect: 'C:/Users/Temistocles/Desktop/web/ProyectoWeb1/homeAdmin.html',
-  }), function(req, res) {
-    res.send('Welcome back');
-  })
+  app.post('/login',
+    passport.authenticate('local'), function (req, res) {
+      // console.log(req.params.User)
+      // res.send(req.params.userName);
+      res.json(req.user);
+      // res.send(req.user.userName);
+      // res.json({
+      //   username: req.User,
+      //   type: req.body.type
+      // });
+    })
 };
