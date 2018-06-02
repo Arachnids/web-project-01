@@ -51,8 +51,8 @@ module.exports = function (app) {
   app.post('/login', 
   passport.authenticate('local'
   , {
-    failureRedirect: '/login',
-    successRedirect: '/homeAdmin',
+    failureRedirect: 'C:/Users/Temistocles/Desktop/web/ProyectoWeb1/login.html',
+    successRedirect: 'C:/Users/Temistocles/Desktop/web/ProyectoWeb1/homeAdmin.html',
   }), function(req, res) {
     res.send('Welcome back');
   })
