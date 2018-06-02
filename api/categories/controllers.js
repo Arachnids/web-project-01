@@ -47,3 +47,17 @@ function create(name) {
 
 exports.create = create;
 
+function deleteById(id) {
+  return new Promise((fnResolve, fnReject) => {
+    Categories.remove({
+      _id: id
+    }, function (objError) {
+      if (objError) {
+        return fnReject(objError);
+      }
+      return fnResolve({ message: 'Category deleted.' });
+    });
+  });
+};
+
+exports.deleteById = deleteById;
